@@ -307,8 +307,26 @@ export default function Home() {
     setFlippedPoint(0);
   };
 
+  const handleTilt = (event: React.PointerEvent<HTMLElement>) => {
+    const rect = event.currentTarget.getBoundingClientRect();
+    const x = ((event.clientX - rect.left) / rect.width - 0.5) * 10;
+    const y = ((event.clientY - rect.top) / rect.height - 0.5) * -10;
+    event.currentTarget.style.setProperty("--tilt-x", `${y.toFixed(2)}deg`);
+    event.currentTarget.style.setProperty("--tilt-y", `${x.toFixed(2)}deg`);
+  };
+
+  const resetTilt = (event: React.PointerEvent<HTMLElement>) => {
+    event.currentTarget.style.setProperty("--tilt-x", "0deg");
+    event.currentTarget.style.setProperty("--tilt-y", "0deg");
+  };
+
   return (
     <main ref={scope}>
+      <div className="ambient-scene" aria-hidden="true">
+        <span />
+        <span />
+        <span />
+      </div>
       <header className="site-header">
         <a className="brand" href="#home" aria-label="الرئيسية">
           <GraduationCap size={22} />
@@ -374,7 +392,13 @@ export default function Home() {
           </div>
         </div>
 
-        <article className="revision-panel" data-animate data-domain-panel>
+        <article
+          className="revision-panel tilt-card"
+          data-animate
+          data-domain-panel
+          onPointerMove={handleTilt}
+          onPointerLeave={resetTilt}
+        >
           <div className="panel-top">
             <div className="domain-icon" style={{ background: activeDomain.tint, color: activeDomain.color }}>
               <ActiveIcon size={30} />
@@ -548,9 +572,11 @@ export default function Home() {
             const isExpanded = expandedDomain === domain.id;
             return (
               <article
-                className={`domain-card ${activeDomain.id === domain.id ? "current" : ""}`}
+                className={`domain-card tilt-card ${activeDomain.id === domain.id ? "current" : ""}`}
                 key={domain.id}
                 data-animate
+                onPointerMove={handleTilt}
+                onPointerLeave={resetTilt}
               >
                 <button
                   className="card-title card-toggle"
