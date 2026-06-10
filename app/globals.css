@@ -18,6 +18,7 @@
 
 html {
   scroll-behavior: smooth;
+  scroll-padding-top: 92px;
 }
 
 body {
@@ -253,7 +254,7 @@ h1 {
 
 .domain-tabs {
   display: grid;
-  grid-template-columns: repeat(4, minmax(112px, 1fr));
+  grid-template-columns: repeat(4, minmax(0, 1fr));
   gap: 10px;
   margin-top: 28px;
 }
@@ -288,6 +289,8 @@ footer button {
   align-items: center;
   justify-content: center;
   gap: 8px;
+  white-space: normal;
+  line-height: 1.35;
 }
 
 .domain-tabs svg,
@@ -768,6 +771,7 @@ footer button {
   background: rgba(255, 255, 255, 0.08);
   backdrop-filter: blur(12px);
   transform: translateZ(28px);
+  line-height: 1.35;
   transition:
     transform 0.28s cubic-bezier(0.2, 0.8, 0.2, 1),
     background 0.24s ease,
@@ -1096,6 +1100,7 @@ footer button {
   border: 1px solid rgba(255, 255, 255, 0.12);
   color: #ffffff;
   min-height: 78px;
+  overflow-wrap: anywhere;
 }
 
 .memory-list button.flipped {
@@ -1156,6 +1161,10 @@ footer span {
 }
 
 @media (max-width: 980px) {
+  html {
+    scroll-padding-top: 18px;
+  }
+
   .hero,
   .map-workspace,
   .study-tools,
@@ -1164,7 +1173,12 @@ footer span {
   }
 
   .hero {
-    padding-top: 34px;
+    min-height: auto;
+    padding: 34px 0 28px;
+  }
+
+  .domain-tabs {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
   .domain-card-grid {
@@ -1183,12 +1197,41 @@ footer span {
   .focus-strip > div {
     grid-column: 1 / -1;
   }
+
+  .map-section {
+    min-height: auto;
+  }
+
+  .map-workspace {
+    min-height: auto;
+  }
+
+  .orbit-map {
+    transform: none;
+  }
 }
 
 @media (max-width: 720px) {
+  .section-shell,
+  .memorize-section {
+    width: min(100% - 22px, 1180px);
+  }
+
+  .ambient-scene::before {
+    background-size: 38px 38px;
+  }
+
+  .ambient-scene span {
+    width: 12rem;
+    opacity: 0.12;
+  }
+
   .site-header {
+    position: relative;
     align-items: flex-start;
     flex-direction: column;
+    gap: 10px;
+    padding: 12px;
   }
 
   .site-header nav {
@@ -1198,8 +1241,31 @@ footer span {
   }
 
   .site-header nav a {
+    min-height: 42px;
+    padding: 9px 8px;
     text-align: center;
     background: rgba(255, 255, 255, 0.72);
+    border: 1px solid rgba(216, 224, 238, 0.8);
+    border-radius: 8px;
+    font-size: 0.92rem;
+  }
+
+  .brand {
+    font-size: 1rem;
+  }
+
+  .hero {
+    gap: 18px;
+  }
+
+  h1 {
+    font-size: clamp(2.45rem, 13vw, 3.55rem);
+    line-height: 1.08;
+  }
+
+  .hero-copy p {
+    font-size: 1rem;
+    line-height: 1.8;
   }
 
   .domain-tabs,
@@ -1209,20 +1275,77 @@ footer span {
     grid-template-columns: 1fr;
   }
 
+  .domain-tabs {
+    gap: 8px;
+    margin-top: 18px;
+  }
+
+  .study-tools {
+    gap: 10px;
+  }
+
+  .progress-widget {
+    align-items: flex-start;
+  }
+
+  .revision-panel,
+  .subtopic-panel,
+  .domain-card,
+  .memorize-card {
+    box-shadow: 0 16px 42px rgba(24, 35, 63, 0.1);
+  }
+
+  .panel-top,
+  .card-title {
+    gap: 10px;
+  }
+
+  .domain-icon {
+    width: 54px;
+    border-radius: 15px;
+  }
+
+  .domain-icon svg {
+    width: 27px;
+    height: 27px;
+  }
+
+  .panel-actions {
+    display: grid;
+    grid-template-columns: 1fr;
+  }
+
+  .panel-actions button {
+    width: 100%;
+  }
+
   .map-section {
-    padding-top: 44px;
+    padding: 42px 11px;
+  }
+
+  .map-copy {
+    margin-bottom: 16px;
+  }
+
+  .map-copy p {
+    line-height: 1.75;
   }
 
   .orbit-map {
-    min-height: 640px;
+    min-height: 560px;
   }
 
   .center-node {
-    width: 160px;
+    width: 148px;
+    min-height: 74px;
+    padding: 12px;
+    font-size: 0.92rem;
   }
 
   .map-node {
-    width: 78%;
+    width: min(88%, 330px);
+    min-height: 64px;
+    padding: 10px 12px;
     left: 50%;
     right: auto;
     transform: translateX(-50%);
@@ -1239,19 +1362,19 @@ footer span {
   }
 
   .node-1 {
-    top: 28px;
+    top: 22px;
   }
 
   .node-2 {
-    top: 132px;
+    top: 108px;
   }
 
   .node-3 {
-    bottom: 132px;
+    bottom: 108px;
   }
 
   .node-4 {
-    bottom: 28px;
+    bottom: 22px;
   }
 
   .section-heading,
@@ -1267,5 +1390,131 @@ footer span {
   .card-toggle {
     grid-template-columns: 54px minmax(0, 1fr) 34px;
     gap: 10px;
+  }
+
+  .domain-card {
+    padding: 18px;
+  }
+
+  .memorize-section {
+    padding-bottom: 44px;
+  }
+
+  .memory-list button,
+  .memory-list div {
+    grid-template-columns: 46px 1fr;
+    gap: 10px;
+    padding: 12px;
+  }
+
+  .memory-list span {
+    width: 38px;
+  }
+}
+
+@media (max-width: 430px) {
+  .section-shell,
+  .memorize-section {
+    width: min(100% - 16px, 1180px);
+  }
+
+  .eyebrow,
+  .section-kicker {
+    width: 100%;
+    justify-content: center;
+    padding: 8px 10px;
+    text-align: center;
+  }
+
+  h1 {
+    font-size: clamp(2.15rem, 14vw, 3rem);
+  }
+
+  .hero-copy p,
+  .info-block p,
+  .definition,
+  .subtopic-detail,
+  .subtopic-list p,
+  .memory-list p {
+    font-size: 0.94rem;
+  }
+
+  .search-box {
+    padding: 0 12px;
+  }
+
+  .progress-widget {
+    display: grid;
+    grid-template-columns: 54px 1fr;
+  }
+
+  .focus-strip {
+    padding: 8px;
+  }
+
+  .focus-strip button {
+    justify-content: flex-start;
+  }
+
+  .map-section {
+    padding-inline: 8px;
+  }
+
+  .orbit-map {
+    min-height: 520px;
+  }
+
+  .map-node {
+    width: min(92%, 310px);
+    font-size: 0.9rem;
+  }
+
+  .map-node svg,
+  .center-node svg {
+    width: 25px;
+    height: 25px;
+  }
+
+  .center-node {
+    width: 132px;
+    font-size: 0.84rem;
+  }
+
+  .subtopic-panel {
+    padding: 16px;
+  }
+
+  .card-toggle {
+    grid-template-columns: 48px minmax(0, 1fr) 32px;
+  }
+
+  .card-toggle > svg:last-child {
+    width: 32px;
+    height: 32px;
+    padding: 7px;
+  }
+
+  .domain-icon {
+    width: 48px;
+  }
+
+  .domain-icon svg {
+    width: 24px;
+    height: 24px;
+  }
+
+  .quick-legend div {
+    min-height: 78px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
   }
 }
