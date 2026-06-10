@@ -851,6 +851,18 @@ footer button {
   gap: 8px;
   justify-content: flex-start;
   text-align: right;
+  transform: none;
+}
+
+.subtopic-buttons button:hover {
+  transform: none;
+  background: #f6f9ff;
+  box-shadow: 0 10px 24px rgba(15, 23, 42, 0.08);
+}
+
+.subtopic-buttons button.active:hover {
+  background: #102033;
+  color: #ffffff;
 }
 
 .subtopic-detail {
@@ -1040,7 +1052,8 @@ footer button {
 
 .subtopic-list button:hover {
   background: #f6f9ff;
-  transform: translateY(-3px);
+  transform: none;
+  box-shadow: 0 10px 24px rgba(15, 23, 42, 0.08);
 }
 
 .memorize-section {
