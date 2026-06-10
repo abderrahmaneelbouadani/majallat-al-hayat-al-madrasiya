@@ -1049,7 +1049,7 @@ footer button {
   gap: 18px;
   width: min(1180px, calc(100% - 32px));
   margin: 0 auto;
-  padding: 20px 0 72px;
+  padding: 20px 0 36px;
 }
 
 .memorize-card {
@@ -1145,6 +1145,81 @@ footer button {
   line-height: 1.6;
 }
 
+.creators-section {
+  padding: 0 0 64px;
+}
+
+.creators-heading {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 18px;
+}
+
+.creators-heading h2 {
+  margin: 0;
+  font-family: "Noto Kufi Arabic", "IBM Plex Sans Arabic", sans-serif;
+  font-size: clamp(1.45rem, 2.8vw, 2.2rem);
+}
+
+.creators-grid {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.creator-card {
+  display: grid;
+  gap: 10px;
+  align-content: center;
+  min-height: 118px;
+  padding: 18px;
+  border: 1px solid #dfe7f3;
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.9);
+  box-shadow: 0 14px 38px rgba(24, 35, 63, 0.08);
+  transition: transform 0.22s ease, box-shadow 0.22s ease, border-color 0.22s ease;
+}
+
+.creator-card:hover {
+  transform: translateY(-4px);
+  border-color: var(--active-color);
+  box-shadow: 0 22px 54px rgba(24, 35, 63, 0.14);
+}
+
+.creator-card span {
+  display: grid;
+  place-items: center;
+  width: 38px;
+  aspect-ratio: 1;
+  border-radius: 12px;
+  background: #e8f1ff;
+  color: #1d4ed8;
+  font-weight: 900;
+}
+
+.creator-card strong {
+  color: #182132;
+  font-size: 1rem;
+  line-height: 1.65;
+}
+
+.creator-card.lead {
+  background: linear-gradient(135deg, #101828 0%, #1e3a8a 100%);
+  color: #ffffff;
+  border-color: rgba(59, 130, 246, 0.36);
+}
+
+.creator-card.lead span {
+  background: #67e8f9;
+  color: #0f172a;
+}
+
+.creator-card.lead strong {
+  color: #ffffff;
+}
+
 footer {
   justify-content: space-between;
   gap: 14px;
@@ -1187,6 +1262,10 @@ footer span {
 
   .quick-legend {
     grid-template-columns: repeat(3, 1fr);
+  }
+
+  .creators-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
   .focus-strip {
@@ -1378,6 +1457,7 @@ footer span {
   }
 
   .section-heading,
+  .creators-heading,
   footer {
     align-items: stretch;
     flex-direction: column;
@@ -1397,6 +1477,10 @@ footer span {
   }
 
   .memorize-section {
+    padding-bottom: 44px;
+  }
+
+  .creators-section {
     padding-bottom: 44px;
   }
 
@@ -1505,6 +1589,14 @@ footer span {
 
   .quick-legend div {
     min-height: 78px;
+  }
+
+  .creators-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .creator-card {
+    min-height: 92px;
   }
 }
 

@@ -223,6 +223,14 @@ const memorizationPoints = [
   "المجالات الأربعة تتكامل لتكوين متعلم متوازن."
 ];
 
+const creators = [
+  "عبد الرحمان البوعداني",
+  "عبد الحكيم ظريف",
+  "عبد العلي العلوي الماحي",
+  "محمد البكرفاوي",
+  "سكينة طريقي"
+];
+
 export default function Home() {
   const [activeIndex, setActiveIndex] = useState(0);
   const [activeSubtitle, setActiveSubtitle] = useState(0);
@@ -687,6 +695,24 @@ export default function Home() {
             <CheckCircle2 size={20} />
             <span>استحضر أثره على المتعلم.</span>
           </div>
+        </div>
+      </section>
+
+      <section className="creators-section section-shell" data-animate>
+        <div className="creators-heading">
+          <div className="section-kicker">
+            <UsersRound size={18} />
+            إنجاز الطلبة
+          </div>
+          <h2>أعد هذا العمل</h2>
+        </div>
+        <div className="creators-grid" aria-label="أسماء الطلبة الذين أنجزوا هذا العمل">
+          {creators.map((creator, index) => (
+            <div className={index === 0 ? "creator-card lead" : "creator-card"} key={creator}>
+              <span>{String(index + 1).padStart(2, "0")}</span>
+              <strong>{creator}</strong>
+            </div>
+          ))}
         </div>
       </section>
 
