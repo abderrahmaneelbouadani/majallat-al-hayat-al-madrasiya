@@ -17,6 +17,7 @@ import {
   Eye,
   GraduationCap,
   HeartPulse,
+  HelpCircle,
   Layers3,
   Leaf,
   Lightbulb,
@@ -28,6 +29,7 @@ import {
   ShieldCheck,
   Sparkles,
   Target,
+  Trophy,
   UsersRound
 } from "lucide-react";
 
@@ -231,17 +233,231 @@ const creators = [
   "سكينة طريقي"
 ];
 
+const qcmQuestions = [
+  {
+    question: "ما الغاية العامة من مجالات الحياة المدرسية؟",
+    options: [
+      "جعل المؤسسة فضاء للتعلم والسلوك والمسؤولية",
+      "تعويض الدروس الصفية بأنشطة فقط",
+      "حصر دور المتعلم في التلقي",
+      "فصل المدرسة عن محيطها"
+    ],
+    answer: 0,
+    explanation: "المجالات تجعل المؤسسة فضاء للتعلم والحياة والسلوك والمشاركة والمسؤولية."
+  },
+  {
+    question: "أي مجال يرتبط بالحقوق والواجبات والمشاركة التلاميذية؟",
+    options: ["الصحة المدرسية", "المواطنة", "الأمن الإنساني", "البيئة والتنمية المستدامة"],
+    answer: 1,
+    explanation: "المواطنة تركز على القيم والحقوق والواجبات والإنصاف والمشاركة."
+  },
+  {
+    question: "ما الفكرة الأساسية في مجال البيئة والتنمية المستدامة؟",
+    options: [
+      "حماية المحيط وترشيد الموارد",
+      "تنظيم الفحوصات الطبية فقط",
+      "وضع مخطط الإخلاء",
+      "تدبير المجالس التلاميذية"
+    ],
+    answer: 0,
+    explanation: "هذا المجال يربط الحياة المدرسية بحماية البيئة وترشيد الموارد والمشاريع البيئية."
+  },
+  {
+    question: "أي عنصر يدخل ضمن الصحة المدرسية؟",
+    options: ["التربية على الطوارئ", "المراقبة الصحية", "مشاريع التشجير", "الإنصاف وتكافؤ الفرص"],
+    answer: 1,
+    explanation: "المراقبة الصحية والتربية الصحية والحياة السليمة والصحة النفسية من محاور الصحة المدرسية."
+  },
+  {
+    question: "ما المجال الذي يهتم بتدبير المخاطر والطوارئ والحماية؟",
+    options: ["الأمن الإنساني", "المواطنة", "التنمية المستدامة", "المشاركة التلاميذية"],
+    answer: 0,
+    explanation: "الأمن الإنساني يهتم بالسلامة والوقاية والتصرف في الوضعيات الطارئة."
+  },
+  {
+    question: "أي عبارة تلخص تكامل المجالات الأربعة؟",
+    options: [
+      "كل مجال مستقل تماما عن باقي المجالات",
+      "المجالات الأربعة تتكامل لتكوين متعلم متوازن",
+      "الحياة المدرسية لا ترتبط بالمحيط",
+      "الأندية لا علاقة لها بالمشاركة"
+    ],
+    answer: 1,
+    explanation: "المواطنة والبيئة والصحة والأمن تتكامل لبناء متعلم متوازن ومسؤول."
+  },
+  {
+    question: "ما المقصود بالمشاركة التلاميذية؟",
+    options: [
+      "حضور التلميذ دون إبداء رأيه",
+      "إشراك المتعلم في الأندية والمجالس والمشاريع",
+      "الاقتصار على حفظ الدروس",
+      "منع المبادرات داخل المؤسسة"
+    ],
+    answer: 1,
+    explanation: "المشاركة التلاميذية تعني إشراك المتعلمين في الحياة المدرسية عبر المجالس والأندية والمبادرات."
+  },
+  {
+    question: "أي سلوك يعبر عن الواجب والالتزام داخل المؤسسة؟",
+    options: [
+      "احترام النظام الداخلي والزمن المدرسي",
+      "إتلاف الممتلكات المشتركة",
+      "تجاهل التعليمات الوقائية",
+      "عدم المشاركة في الأنشطة"
+    ],
+    answer: 0,
+    explanation: "الواجب والالتزام يظهران في احترام النظام الداخلي والوقت والمرافق والعلاقات داخل المؤسسة."
+  },
+  {
+    question: "ما معنى الإنصاف وتكافؤ الفرص في الحياة المدرسية؟",
+    options: [
+      "تمييز بعض المتعلمين على حساب الآخرين",
+      "ضمان فرص التعلم والمشاركة للجميع دون إقصاء",
+      "إلغاء الدعم المدرسي",
+      "حصر الأنشطة في فئة واحدة"
+    ],
+    answer: 1,
+    explanation: "الإنصاف يقوم على تمكين جميع المتعلمين من فرص عادلة في التعلم والمشاركة والدعم."
+  },
+  {
+    question: "أي نشاط يناسب مجال البيئة والتنمية المستدامة؟",
+    options: [
+      "حملة تشجير وفرز النفايات",
+      "تدريب الإخلاء فقط",
+      "انتخاب مجلس القسم فقط",
+      "فحص طبي دوري فقط"
+    ],
+    answer: 0,
+    explanation: "المشاريع البيئية مثل التشجير والفرز والتوعية تترجم الوعي البيئي إلى ممارسة عملية."
+  },
+  {
+    question: "ما المقصود بترشيد الموارد؟",
+    options: [
+      "الإسراف في استعمال الماء والطاقة",
+      "استعمال الموارد بشكل عقلاني ومستدام",
+      "إهمال نظافة المؤسسة",
+      "منع الأنشطة البيئية"
+    ],
+    answer: 1,
+    explanation: "ترشيد الموارد يعني استعمال الماء والطاقة والوسائل بشكل مسؤول ومستدام."
+  },
+  {
+    question: "ما علاقة المدرسة بالمحيط في مجال البيئة؟",
+    options: [
+      "لا علاقة للمؤسسة بالمحيط",
+      "تربط الأنشطة المدرسية بمشكلات البيئة المحلية والشركاء",
+      "تكتفي المؤسسة بنظافة القسم فقط",
+      "تلغي العمل بالمشاريع"
+    ],
+    answer: 1,
+    explanation: "الحياة المدرسية تنفتح على المحيط المحلي والشركاء لمعالجة قضايا البيئة والتنمية."
+  },
+  {
+    question: "أي عنصر يدخل ضمن الحياة السليمة؟",
+    options: [
+      "النوم والتغذية والنشاط البدني والنظافة",
+      "العنف المدرسي",
+      "الإسراف في استهلاك الموارد",
+      "إهمال السلامة الطرقية"
+    ],
+    answer: 0,
+    explanation: "الحياة السليمة تجمع بين النظافة والتغذية والنوم والحركة واحترام شروط السلامة."
+  },
+  {
+    question: "لماذا تعد الصحة النفسية جزءا من الصحة المدرسية؟",
+    options: [
+      "لأنها تساعد على التكيف والأمان والعلاقات الإيجابية",
+      "لأنها لا تؤثر في التعلم",
+      "لأنها تعوض التربية الصحية",
+      "لأنها تخص الأسرة فقط"
+    ],
+    answer: 0,
+    explanation: "الصحة النفسية تدعم التعلم والاندماج وتحد من التوتر والعزلة والعنف."
+  },
+  {
+    question: "ما الهدف من المراقبة الصحية داخل المؤسسة؟",
+    options: [
+      "الكشف المبكر والتتبع والتنسيق عند الحاجة",
+      "إلغاء الأنشطة الصحية",
+      "تدبير المخاطر الرقمية",
+      "تعويض مجال المواطنة"
+    ],
+    answer: 0,
+    explanation: "المراقبة الصحية تساعد على التتبع والكشف المبكر والتدخل بتنسيق مع الأسر والمختصين."
+  },
+  {
+    question: "ما وظيفة مخطط الأمن المدرسي؟",
+    options: [
+      "تحديد المخاطر والمسؤوليات ومسارات التدخل",
+      "تنظيم حملات التشجير",
+      "تحديد كلمات مفتاحية للحفظ",
+      "إلغاء تمارين الطوارئ"
+    ],
+    answer: 0,
+    explanation: "مخطط الأمن المدرسي ينظم الوقاية والتدخل والمسؤوليات عند حدوث الخطر."
+  },
+  {
+    question: "أي مثال يناسب التربية على الطوارئ؟",
+    options: [
+      "التدريب على الإخلاء والإسعافات الأولية",
+      "المشاركة في مجلس التلاميذ فقط",
+      "الاقتصاد في الماء فقط",
+      "تنظيم ملصق بيئي فقط"
+    ],
+    answer: 0,
+    explanation: "التربية على الطوارئ تدرب المتعلمين على التصرف السليم في الحريق أو الزلزال أو الحوادث."
+  },
+  {
+    question: "ما المقصود بالحماية والوقاية في الأمن الإنساني؟",
+    options: [
+      "الحد من العنف والحوادث والمخاطر وحفظ الكرامة",
+      "إهمال العلاقات داخل المؤسسة",
+      "منع التواصل مع الشركاء",
+      "التركيز على الحفظ فقط"
+    ],
+    answer: 0,
+    explanation: "الحماية والوقاية تهدفان إلى تأمين الأشخاص والفضاءات والعلاقات داخل المؤسسة."
+  },
+  {
+    question: "أي مجال يجعل المتعلم يربط حقوقه بواجباته داخل المؤسسة؟",
+    options: ["المواطنة", "الصحة المدرسية", "الأمن الرقمي", "البيئة المحلية"],
+    answer: 0,
+    explanation: "المواطنة تدرب المتعلم على فهم الحقوق والالتزام بالواجبات داخل الحياة المدرسية."
+  },
+  {
+    question: "ما العنصر المشترك بين المجالات الأربعة؟",
+    options: [
+      "أنها تجمع بين قيم وأهداف وأنشطة وتقويم",
+      "أنها تركز على الحفظ فقط",
+      "أنها منفصلة عن مشروع المؤسسة",
+      "أنها تخص الإدارة دون المتعلمين"
+    ],
+    answer: 0,
+    explanation: "كل مجال من مجالات الحياة المدرسية يجمع بين قيم وأهداف وأنشطة قابلة للتتبع والتقويم."
+  }
+];
+
 export default function Home() {
   const [activeIndex, setActiveIndex] = useState(0);
   const [activeSubtitle, setActiveSubtitle] = useState(0);
   const [searchTerm, setSearchTerm] = useState("");
   const [completedDomains, setCompletedDomains] = useState<string[]>([]);
   const [flippedPoint, setFlippedPoint] = useState<number | null>(0);
-  const [expandedDomain, setExpandedDomain] = useState<string>(domains[0].id);
+  const [expandedDomain, setExpandedDomain] = useState<string>("");
+  const [currentQuestion, setCurrentQuestion] = useState(0);
+  const [qcmAnswers, setQcmAnswers] = useState<Record<number, number>>({});
   const scope = useRef<HTMLElement | null>(null);
   const activeDomain = domains[activeIndex];
   const ActiveIcon = activeDomain.icon;
   const progressPercent = Math.round((completedDomains.length / domains.length) * 100);
+  const pdfPath = "./majallat-mindmap.pdf";
+  const activeQuestion = qcmQuestions[currentQuestion];
+  const selectedAnswer = qcmAnswers[currentQuestion];
+  const isCurrentQuestionCorrect = selectedAnswer === activeQuestion.answer;
+  const qcmScore = qcmQuestions.reduce(
+    (total, question, index) => total + (qcmAnswers[index] === question.answer ? 1 : 0),
+    0
+  );
+  const answeredQuestions = Object.keys(qcmAnswers).length;
 
   const selectedSubtopic = useMemo(
     () => activeDomain.subtopics[activeSubtitle] ?? activeDomain.subtopics[0],
@@ -315,6 +531,15 @@ export default function Home() {
     setFlippedPoint(0);
   };
 
+  const chooseAnswer = (optionIndex: number) => {
+    setQcmAnswers((current) => ({ ...current, [currentQuestion]: optionIndex }));
+  };
+
+  const resetQcm = () => {
+    setCurrentQuestion(0);
+    setQcmAnswers({});
+  };
+
   const handleTilt = (event: React.PointerEvent<HTMLElement>) => {
     const rect = event.currentTarget.getBoundingClientRect();
     const x = ((event.clientX - rect.left) / rect.width - 0.5) * 10;
@@ -343,8 +568,10 @@ export default function Home() {
         <nav aria-label="التنقل الرئيسي">
           <a href="#home">الرئيسية</a>
           <a href="#map">الخريطة</a>
+          <a href="#workflow">الخريطة الذهنية</a>
           <a href="#domains">المجالات</a>
           <a href="#memorize">نقاط للحفظ</a>
+          <a href="#qcm">QCM</a>
         </nav>
       </header>
 
@@ -472,7 +699,7 @@ export default function Home() {
             className={index === activeIndex ? "active" : ""}
             onClick={() => {
               selectDomain(index);
-              document.querySelector("#map")?.scrollIntoView({ behavior: "smooth" });
+              document.querySelector("#workflow")?.scrollIntoView({ behavior: "smooth" });
             }}
           >
             <span style={{ background: domain.color }} />
@@ -559,14 +786,46 @@ export default function Home() {
         </div>
       </section>
 
+      <section id="workflow" className="workflow-section section-shell">
+        <div className="section-heading" data-animate>
+          <div>
+            <div className="section-kicker">
+              <Map size={18} />
+              الخريطة الذهنية
+            </div>
+            <h2>الخريطة الذهنية</h2>
+          </div>
+          <div className="result-pill">
+            <Eye size={16} />
+            ملف PDF
+          </div>
+        </div>
+
+        <div className="pdf-viewer-card" data-animate>
+          <div className="pdf-toolbar">
+            <div>
+              <strong>الخريطة الذهنية</strong>
+            </div>
+            <a href={pdfPath} target="_blank" rel="noreferrer">
+              <Eye size={18} />
+              فتح الملف
+            </a>
+          </div>
+          <iframe
+            title="الخريطة الذهنية لمجالات الحياة المدرسية"
+            src={`${pdfPath}#toolbar=1&navpanes=0&view=FitH`}
+          />
+        </div>
+      </section>
+
       <section id="domains" className="section-shell domains-section">
         <div className="section-heading" data-animate>
           <div>
+            <h2>المجالات الأربعة</h2>
             <div className="section-kicker">
               <NotebookTabs size={18} />
               بطاقات تفصيلية
             </div>
-            <h2>المجالات الأربعة في صفحة واحدة</h2>
           </div>
           <div className="result-pill">
             <Search size={16} />
@@ -694,6 +953,90 @@ export default function Home() {
           <div>
             <CheckCircle2 size={20} />
             <span>استحضر أثره على المتعلم.</span>
+          </div>
+        </div>
+      </section>
+
+      <section id="qcm" className="qcm-section section-shell" data-animate>
+        <div className="section-heading">
+          <div>
+            <div className="section-kicker">
+              <HelpCircle size={18} />
+              QCM
+            </div>
+            <h2>اختبار تفاعلي سريع للمراجعة</h2>
+          </div>
+          <div className="result-pill">
+            <Trophy size={16} />
+            {qcmScore} / {qcmQuestions.length}
+          </div>
+        </div>
+
+        <div className="qcm-card">
+          <div className="qcm-progress">
+            <span>
+              السؤال {currentQuestion + 1} من {qcmQuestions.length}
+            </span>
+            <div>
+              <i style={{ width: `${(answeredQuestions / qcmQuestions.length) * 100}%` }} />
+            </div>
+          </div>
+
+          <h3>{activeQuestion.question}</h3>
+
+          <div className="qcm-options">
+            {activeQuestion.options.map((option, index) => {
+              const isSelected = selectedAnswer === index;
+              const isCorrect = activeQuestion.answer === index;
+              const isWrong = isSelected && !isCorrect;
+              return (
+                <button
+                  key={option}
+                  type="button"
+                  className={`${selectedAnswer !== undefined && isCorrect ? "correct" : ""} ${
+                    isWrong ? "wrong" : ""
+                  } ${isSelected ? "selected" : ""}`}
+                  onClick={() => chooseAnswer(index)}
+                >
+                  <span>{String.fromCharCode(65 + index)}</span>
+                  {option}
+                </button>
+              );
+            })}
+          </div>
+
+          {selectedAnswer !== undefined && (
+            <div className={selectedAnswer === activeQuestion.answer ? "qcm-feedback correct" : "qcm-feedback wrong"}>
+              <strong>{selectedAnswer === activeQuestion.answer ? "إجابة صحيحة" : "إجابة غير صحيحة"}</strong>
+              <p>{activeQuestion.explanation}</p>
+            </div>
+          )}
+
+          {selectedAnswer !== undefined && !isCurrentQuestionCorrect && (
+            <p className="qcm-lock-message">صحح الإجابة أولا للمرور إلى السؤال التالي.</p>
+          )}
+
+          <div className="qcm-actions">
+            <button
+              type="button"
+              onClick={() => setCurrentQuestion((current) => Math.max(0, current - 1))}
+              disabled={currentQuestion === 0}
+            >
+              <ChevronRight size={18} />
+              السابق
+            </button>
+            <button type="button" onClick={resetQcm}>
+              <RotateCcw size={18} />
+              إعادة
+            </button>
+            <button
+              type="button"
+              onClick={() => setCurrentQuestion((current) => Math.min(qcmQuestions.length - 1, current + 1))}
+              disabled={currentQuestion === qcmQuestions.length - 1 || !isCurrentQuestionCorrect}
+            >
+              التالي
+              <ChevronLeft size={18} />
+            </button>
           </div>
         </div>
       </section>
